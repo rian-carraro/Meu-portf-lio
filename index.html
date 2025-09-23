@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Criativo | Designer & Desenvolvedor</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Ícone do site -->
+    <link rel="icon" type="image/png" href="icon.png" sizes= "192x192"/>
+
+    <!-- Metadados para compartilhamento -->
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="Rian Carraro"/>
+    <meta property="og:image" content="#"/>
+    <meta property="og:description" content="Seja bem-vindo ao meu portfolio"/>
+    <meta property="og:site_name" content="Rian Carraro"/> 
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loader">
+            <div class="loading-text">Carregando...</div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">Portfolio</span>
+                <div class="logo-dot"></div>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link active">Início</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#portfolio" class="nav-link">Portfólio</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#services" class="nav-link">Serviços</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">Sobre</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#certificates" class="nav-link">Certificações</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contato</a>
+                </li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+                <div class="shape shape-5"></div>
+            </div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text" data-aos="fade-up">
+                <h1 class="hero-title">
+                    <span class="hero-title-line1">Olá, eu sou</span>
+                    <span class="hero-title-line2 gradient-text typing-effect" data-words='["Desenvolvedor"]'>Desenvolvedor</span>
+                </h1>
+                <p class="hero-description">
+                    Transformo ideias em realidade através de designs únicos e projetos inovadores. 
+                    Especialista em projetos 2D, 3D e desenvolvimento criativo.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#portfolio" class="btn btn-primary">
+                        <span>Ver Trabalhos</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <span>Entre em Contato</span>
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image" data-aos="fade-left" data-aos-delay="200">
+                <div class="image-container">
+                    <div class="image-placeholder">
+                        <i class="fas fa-user"></i>
+                        <p>Sua Foto Aqui</p>
+                    </div>
+                    <div class="floating-elements">
+                        <div class="floating-icon icon-1">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <div class="floating-icon icon-2">
+                            <i class="fas fa-cube"></i>
+                        </div>
+                        <div class="floating-icon icon-3">
+                            <i class="fas fa-code"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Meu Portfólio</h2>
+                <p class="section-description">Alguns dos meus trabalhos mais recentes</p>
+            </div>
+
+            <div class="portfolio-filters" data-aos="fade-up" data-aos-delay="100">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="3d">Projetos 3D</button>
+                <button class="filter-btn" data-filter="2d">Projetos 2D</button>
+                <button class="filter-btn" data-filter="render">Renderização</button>
+                <button class="filter-btn" data-filter="web">Web Design</button>
+            </div>
+
+            <div class="portfolio-grid" data-aos="fade-up" data-aos-delay="200">
+                <!-- Portfolio Item 1 -->
+                <div class="portfolio-item" data-category="3d" data-title="Modelagem 3D Avançada" data-description="Projeto de modelagem e renderização 3D" data-image="https://picsum.photos/seed/3d-model/1200/800" data-images="https://picsum.photos/seed/3d-model/1200/800, https://picsum.photos/seed/3d-wire/1200/800, https://picsum.photos/seed/3d-render/1200/800, https://picsum.photos/seed/3d-scene/1200/800">
+                    <div class="portfolio-image">
+                        <div class="image-placeholder">
+                            <i class="fas fa-cube"></i>
+                            <p>Projeto 3D</p>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <h3>Modelagem 3D Avançada</h3>
+                                <p>Projeto de modelagem e renderização 3D</p>
+                                <div class="portfolio-links">
+                                    <a href="#" class="portfolio-link" title="Pré-visualizar">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                                <a class="portfolio-link" title="Ver página" target="_blank"
+                                                    href="project.html?title=Modelagem%203D%20Avan%C3%A7ada&desc=Projeto%20de%20modelagem%20e%20renderiza%C3%A7%C3%A3o%203D&cat=3d&imgs=https%3A%2F%2Fpicsum.photos%2Fseed%2F3d-model%2F1200%2F800%7Chttps%3A%2F%2Fpicsum.photos%2Fseed%2F3d-wire%2F1200%2F800%7Chttps%3A%2F%2Fpicsum.photos%2Fseed%2F3d-render%2F1200%2F800%7Chttps%3A%2F%2Fpicsum.photos%2Fseed%2F3d-scene%2F1200%2F800">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 2 -->
+                <div class="portfolio-item" data-category="2d" data-title="Ilustração Digital" data-description="Arte digital e design gráfico" data-image="https://picsum.photos/seed/2d-illustration/1200/800" data-images="https://picsum.photos/seed/2d-illustration/1200/800, https://picsum.photos/seed/2d-sketch/1200/800, https://picsum.photos/seed/2d-color/1200/800">
+                    <div class="portfolio-image">
+                        <div class="image-placeholder">
+                            <i class="fas fa-paint-brush"></i>
+                            <p>Design 2D</p>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <h3>Ilustração Digital</h3>
+                                <p>Arte digital e design gráfico</p>
+                                <div class="portfolio-links">
+                                    <a href="#" class="portfolio-link" title="Pré-visualizar">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                                <a class="portfolio-link" title="Ver página" target="_blank"
+                                                    href="project.html?title=Ilustra%C3%A7%C3%A3o%20Digital&desc=Arte%20digital%20e%20design%20gr%C3%A1fico&cat=2d&imgs=https%3A%2F%2Fpicsum.photos%2Fseed%2F2d-illustration%2F1200%2F800%7Chttps%3A%2F%2Fpicsum.photos%2Fseed%2F2d-sketch%2F1200%2F800%7Chttps%3A%2F%2Fpicsum.photos%2Fseed%2F2d-color%2F1200%2F800">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 3 -->
+                <div class="portfolio-item" data-category="web" data-title="Website Responsivo" data-description="Design e desenvolvimento web" data-image="https://picsum.photos/seed/web-design/1200/800" data-images="https://picsum.photos/seed/web-design/1200/800, https://picsum.photos/seed/web-grid/1200/800, https://picsum.photos/seed/web-mobile/1200/800, https://picsum.photos/seed/web-style/1200/800">
+                    <div class="portfolio-image">
+                        <div class="image-placeholder">
+                            <i class="fas fa-globe"></i>
+                            <p>Web Design</p>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <h3>Website Responsivo</h3>
+                                <p>Design e desenvolvimento web</p>
+                                <div class="portfolio-links">
+                                    <a href="#" class="portfolio-link" title="Pré-visualizar">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                                <a class="portfolio-link" title="Ver página" target="_blank"
+                                                    href="project.html?title=Website%20Responsivo&desc=Design%20e%20desenvolvimento%20web&cat=web&imgs=https%3A%2F%2Fpicsum.photos%2Fseed%2Fweb-design%2F1200%2F800%7Chttps%3A%2F%2Fpicsum.photos%2Fseed%2Fweb-grid%2F1200%2F800%7Chttps%3A%2F%2Fpicsum.photos%2Fseed%2Fweb-mobile%2F1200%2F800%7Chttps%3A%2F%2Fpicsum.photos%2Fseed%2Fweb-style%2F1200%2F800">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 4 -->
+                <div class="portfolio-item" data-category="render" data-title="Visualização Arquitetônica" data-description="Renderização fotorrealística" data-image="https://picsum.photos/seed/arch-viz/1200/800" data-images="https://picsum.photos/seed/arch-viz/1200/800, https://picsum.photos/seed/arch-interior/1200/800, https://picsum.photos/seed/arch-exterior/1200/800, https://picsum.photos/seed/arch-night/1200/800">
+                    <div class="portfolio-image">
+                        <div class="image-placeholder">
+                            <i class="fas fa-shapes"></i>
+                            <p>Renderização 3D</p>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <h3>Visualização Arquitetônica</h3>
+                                <p>Renderização fotorrealística</p>
+                                <div class="portfolio-links">
+                                    <a href="#" class="portfolio-link" title="Pré-visualizar">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                                <a class="portfolio-link" title="Ver página" target="_blank"
+                                                    href="project.html?title=Visualiza%C3%A7%C3%A3o%20Arquitet%C3%B4nica&desc=Renderiza%C3%A7%C3%A3o%20fotorreal%C3%ADstica&cat=render&imgs=https%3A%2F%2Fpicsum.photos%2Fseed%2Farch-viz%2F1200%2F800%7Chttps%3A%2F%2Fpicsum.photos%2Fseed%2Farch-interior%2F1200%2F800%7Chttps%3A%2F%2Fpicsum.photos%2Fseed%2Farch-exterior%2F1200%2F800%7Chttps%3A%2F%2Fpicsum.photos%2Fseed%2Farch-night%2F1200%2F800">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 5 -->
+                <div class="portfolio-item" data-category="2d" data-title="Identidade Visual" data-description="Branding e design de marca" data-image="https://picsum.photos/seed/branding/1200/800" data-images="https://picsum.photos/seed/branding/1200/800, https://picsum.photos/seed/brand-book/1200/800, https://picsum.photos/seed/logo-grid/1200/800">
+                    <div class="portfolio-image">
+                        <div class="image-placeholder">
+                            <i class="fas fa-image"></i>
+                            <p>Design Gráfico</p>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <h3>Identidade Visual</h3>
+                                <p>Branding e design de marca</p>
+                                <div class="portfolio-links">
+                                    <a href="#" class="portfolio-link" title="Pré-visualizar">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                                <a class="portfolio-link" title="Ver página" target="_blank"
+                                                    href="project.html?title=Identidade%20Visual&desc=Branding%20e%20design%20de%20marca&cat=2d&imgs=https%3A%2F%2Fpicsum.photos%2Fseed%2Fbranding%2F1200%2F800%7Chttps%3A%2F%2Fpicsum.photos%2Fseed%2Fbrand-book%2F1200%2F800%7Chttps%3A%2F%2Fpicsum.photos%2Fseed%2Flogo-grid%2F1200%2F800">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 6 -->
+                <!-- <div class="portfolio-item" data-category="web" data-title="Interface Mobile" data-description="UI/UX Design para aplicativos" data-image="https://picsum.photos/seed/mobile-ui/1200/800" data-images="https://picsum.photos/seed/mobile-ui/1200/800, https://picsum.photos/seed/mobile-wire/1200/800, https://picsum.photos/seed/mobile-proto/1200/800">
+                    <div class="portfolio-image">
+                        <div class="image-placeholder">
+                            <i class="fas fa-mobile-alt"></i>
+                            <p>App Design</p>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <h3>Interface Mobile</h3>
+                                <p>UI/UX Design para aplicativos</p>
+                                <div class="portfolio-links">
+                                    <a href="#" class="portfolio-link" title="Pré-visualizar">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                                <a class="portfolio-link" title="Ver página" target="_blank"
+                                                    href="project.html?title=Interface%20Mobile&desc=UI%2FUX%20Design%20para%20aplicativos&cat=web&imgs=https%3A%2F%2Fpicsum.photos%2Fseed%2Fmobile-ui%2F1200%2F800%7Chttps%3A%2F%2Fpicsum.photos%2Fseed%2Fmobile-wire%2F1200%2F800%7Chttps%3A%2F%2Fpicsum.photos%2Fseed%2Fmobile-proto%2F1200%2F800">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
+                <!-- Portfolio Item 7 -->
+                <div class="portfolio-item" data-category="render" data-title="Renderização de Produto" data-description="Render 3D fotorrealista para campanhas e catálogos" data-image="https://picsum.photos/seed/product-render/1200/800" data-images="https://picsum.photos/seed/product-render/1200/800, https://picsum.photos/seed/product-light/1200/800, https://picsum.photos/seed/product-detail/1200/800, https://picsum.photos/seed/product-scene/1200/800">
+                    <div class="portfolio-image">
+                        <div class="image-placeholder">
+                            <i class="fas fa-camera"></i>
+                            <p>Render de Produto</p>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <h3>Renderização de Produto</h3>
+                                <p>Render 3D fotorrealista para campanhas e catálogos</p>
+                                <div class="portfolio-links">
+                                    <a href="#" class="portfolio-link" title="Pré-visualizar">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                                <a class="portfolio-link" title="Ver página" target="_blank"
+                                                    href="project.html?title=Renderiza%C3%A7%C3%A3o%20de%20Produto&desc=Render%203D%20fotorrealista%20para%20campanhas%20e%20cat%C3%A1logos&cat=render&imgs=https%3A%2F%2Fpicsum.photos%2Fseed%2Fproduct-render%2F1200%2F800%7Chttps%3A%2F%2Fpicsum.photos%2Fseed%2Fproduct-light%2F1200%2F800%7Chttps%3A%2F%2Fpicsum.photos%2Fseed%2Fproduct-detail%2F1200%2F800%7Chttps%3A%2F%2Fpicsum.photos%2Fseed%2Fproduct-scene%2F1200%2F800">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-label="Pré-visualização de projeto">
+        <div class="lightbox-overlay" data-close="true"></div>
+        <div class="lightbox-content" role="document">
+            <button class="lightbox-close" aria-label="Fechar" data-close="true">&times;</button>
+            <div class="lightbox-media">
+                <img id="lightbox-image" alt="Pré-visualização do projeto" />
+            </div>
+            <div class="lightbox-caption">
+                <span class="lightbox-category" id="lightbox-category"></span>
+                <h3 id="lightbox-title"></h3>
+                <p id="lightbox-description"></p>
+            </div>
+            <div class="lightbox-thumbs" id="lightbox-thumbs"></div>
+            <button class="lightbox-nav prev" aria-label="Anterior" id="lightbox-prev"><i class="fas fa-chevron-left"></i></button>
+            <button class="lightbox-nav next" aria-label="Próximo" id="lightbox-next"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Meus Serviços</h2>
+                <p class="section-description">O que eu posso fazer por você</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <h3 class="service-title">Projetos 3D</h3>
+                    <p class="service-description">
+                        Modelagem, renderização e animação 3D para diversos tipos de projetos.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Modelagem 3D</li>
+                        <li><i class="fas fa-check"></i> Renderização Fotorrealística</li>
+                        <li><i class="fas fa-check"></i> Animação 3D</li>
+                        <li><i class="fas fa-check"></i> Visualização Arquitetônica</li>
+                    </ul>
+                </div>
+
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3 class="service-title">Projetos 2D</h3>
+                    <p class="service-description">
+                        Design gráfico, ilustrações e identidade visual com criatividade e técnica.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Design Gráfico</li>
+                        <li><i class="fas fa-check"></i> Ilustração Digital</li>
+                        <li><i class="fas fa-check"></i> Identidade Visual</li>
+                        <li><i class="fas fa-check"></i> Material Publicitário</li>
+                    </ul>
+                </div>
+
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3 class="service-title">Projetos Finalizados</h3>
+                    <p class="service-description">
+                        Entrega completa de projetos com qualidade profissional e suporte contínuo.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Entrega Completa</li>
+                        <li><i class="fas fa-check"></i> Arquivos Editáveis</li>
+                        <li><i class="fas fa-check"></i> Suporte Pós-Entrega</li>
+                        <li><i class="fas fa-check"></i> Revisões Ilimitadas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text" data-aos="fade-right">
+                    <div class="section-header">
+                        <h2 class="section-title">Minha História</h2>
+                        <p class="section-description">Conheça um pouco sobre minha jornada</p>
+                    </div>
+                    <div class="about-story">
+                        <p>
+                            Minha paixão pelo design começou ainda jovem, quando descobri que podia 
+                            transformar ideias abstratas em criações visuais impactantes. Ao longo dos anos, 
+                            desenvolvi habilidades em diversas áreas do design e da tecnologia.
+                        </p>
+                        <p>
+                            Hoje, combino criatividade com técnica avançada para entregar projetos únicos 
+                            que superam as expectativas dos clientes. Cada projeto é uma nova oportunidade 
+                            de inovar e criar algo extraordinário.
+                        </p>
+                    </div>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="150">0</div>
+                            <div class="stat-label">Projetos Concluídos</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="5">0</div>
+                            <div class="stat-label">Anos de Experiência</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="98">0</div>
+                            <div class="stat-label">% Satisfação</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image" data-aos="fade-left" data-aos-delay="200">
+                    <div class="image-container">
+                        <div class="image-placeholder">
+                            <i class="fas fa-user-tie"></i>
+                            <p>Sua Foto Profissional</p>
+                        </div>
+                        <div class="experience-badge">
+                            <span>5+</span>
+                            <p>Anos de<br>Experiência</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skills-section" data-aos="fade-up" data-aos-delay="300">
+                <h3 class="skills-title">Minhas Habilidades</h3>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>Design 3D</span>
+                            <span>95%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="95%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>Design Gráfico</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>Web Design</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>UI/UX Design</span>
+                            <span>88%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="88%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section id="certificates" class="certificates">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Certificações</h2>
+                <p class="section-description">Meu comprometimento com o aprendizado contínuo</p>
+            </div>
+
+            <div class="certificates-grid">
+                <div class="certificate-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="certificate-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div class="certificate-content">
+                        <h3 class="certificate-title">Design Gráfico Avançado</h3>
+                        <p class="certificate-institution">Instituto de Design Digital</p>
+                        <p class="certificate-year">2023</p>
+                        <div class="certificate-badge">Certificado</div>
+                    </div>
+                </div>
+
+                <div class="certificate-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="certificate-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <div class="certificate-content">
+                        <h3 class="certificate-title">Modelagem 3D Profissional</h3>
+                        <p class="certificate-institution">Academia 3D Master</p>
+                        <p class="certificate-year">2022</p>
+                        <div class="certificate-badge">Certificado</div>
+                    </div>
+                </div>
+
+                <div class="certificate-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="certificate-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div class="certificate-content">
+                        <h3 class="certificate-title">Desenvolvimento Web Frontend</h3>
+                        <p class="certificate-institution">TechSchool Online</p>
+                        <p class="certificate-year">2022</p>
+                        <div class="certificate-badge">Certificado</div>
+                    </div>
+                </div>
+
+                <div class="certificate-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="certificate-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <div class="certificate-content">
+                        <h3 class="certificate-title">UI/UX Design</h3>
+                        <p class="certificate-institution">Design University</p>
+                        <p class="certificate-year">2021</p>
+                        <div class="certificate-badge">Certificado</div>
+                    </div>
+                </div>
+
+                <div class="certificate-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="certificate-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <div class="certificate-content">
+                        <h3 class="certificate-title">Fotografia Digital</h3>
+                        <p class="certificate-institution">Photo Academy</p>
+                        <p class="certificate-year">2021</p>
+                        <div class="certificate-badge">Certificado</div>
+                    </div>
+                </div>
+
+                <div class="certificate-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="certificate-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <div class="certificate-content">
+                        <h3 class="certificate-title">Edição de Vídeo</h3>
+                        <p class="certificate-institution">Video Pro School</p>
+                        <p class="certificate-year">2020</p>
+                        <div class="certificate-badge">Certificado</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Entre em Contato</h2>
+                <p class="section-description">Vamos trabalhar juntos no seu próximo projeto</p>
+            </div>
+
+            <div class="contact-content">
+                <div class="contact-info" data-aos="fade-right">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>seuemail@exemplo.com</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Telefone</h4>
+                            <p>+55 (11) 99999-9999</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Localização</h4>
+                            <p>São Paulo, SP - Brasil</p>
+                        </div>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-behance"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-dribbble"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <form class="contact-form" data-aos="fade-left" data-aos-delay="200">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" required>
+                        <label for="name">Seu Nome</label>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" required>
+                        <label for="email">Seu Email</label>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" id="subject" name="subject" required>
+                        <label for="subject">Assunto</label>
+                    </div>
+
+                    <div class="form-group">
+                        <textarea id="message" name="message" rows="6" required></textarea>
+                        <label for="message">Sua Mensagem</label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        <span>Enviar Mensagem</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-text">Portfolio</span>
+                    <div class="logo-dot"></div>
+                </div>
+                <p class="footer-text">
+                    Transformando ideias em realidade através do design criativo e inovação tecnológica.
+                </p>
+                <div class="footer-links">
+                    <a href="#home">Início</a>
+                    <a href="#portfolio">Portfólio</a>
+                    <a href="#services">Serviços</a>
+                    <a href="#about">Sobre</a>
+                    <a href="#contact">Contato</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Portfolio. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
