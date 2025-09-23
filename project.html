@@ -10,25 +10,36 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
-    body { background: linear-gradient(180deg, #0b1220, #0f172a); color: #e2e8f0; }
+    body { background: linear-gradient(180deg, #ffffff, #f8fafc); color: #0f172a; }
     .project-hero { padding-top: 100px; }
     .project-container { max-width: 1100px; margin: 0 auto; padding: 0 20px 60px; }
-    .breadcrumb { color: #94a3b8; margin-bottom: 1rem; font-size: .9rem; }
-    .project-title { font-family: Poppins, sans-serif; font-weight: 700; font-size: 2rem; margin-bottom: .25rem; }
-    .project-meta { color: #94a3b8; margin-bottom: 1.5rem; }
-    .project-cover { border-radius: 16px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,.3); margin-bottom: 2rem; }
-    .project-cover img { width: 100%; height: auto; display: block; }
+    .breadcrumb { color: #475569; margin-bottom: 1rem; font-size: .9rem; }
+    .project-title { font-family: Poppins, sans-serif; font-weight: 700; font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem); margin-bottom: .25rem; }
+    .project-meta { color: #64748b; margin-bottom: 1.5rem; }
+    .project-cover { border-radius: 16px; overflow: hidden; background: #eef2ff; box-shadow: 0 10px 24px rgba(15,23,42,.08); margin-bottom: 1.5rem; }
+    .project-cover img { width: 100%; height: auto; display: block; transition: opacity .2s ease; }
     .project-grid { display: grid; gap: 2rem; grid-template-columns: 2fr 1fr; }
-    .card { background: rgba(15,23,42,.6); border: 1px solid rgba(148,163,184,.15); border-radius: 16px; padding: 1.25rem; }
+    .card { background: #ffffff; border: 1px solid rgba(15,23,42,.08); border-radius: 16px; padding: 1.25rem; box-shadow: 0 6px 16px rgba(15,23,42,.06); }
     .card h3 { margin-bottom: .75rem; font-size: 1.1rem; }
-    .chip { display: inline-block; padding: 4px 10px; border-radius: 999px; background: rgba(148,163,184,.12); border: 1px solid rgba(148,163,184,.2); color: #cbd5e1; font-size: .8rem; margin: 0 6px 6px 0; }
-    .actions { display: flex; gap: .75rem; margin-top: 1rem; }
-    .actions a { text-decoration: none; color: white; padding: .6rem .9rem; border-radius: 10px; display: inline-flex; align-items: center; gap: .5rem; }
-    .btn-primary { background: linear-gradient(135deg, #6366f1, #8b5cf6); }
-    .btn-secondary { background: rgba(148,163,184,.12); border: 1px solid rgba(148,163,184,.2); color: #e2e8f0; }
+    .chip { display: inline-block; padding: 4px 10px; border-radius: 999px; background: rgba(15,23,42,.04); border: 1px solid rgba(15,23,42,.08); color: #0f172a; font-size: .8rem; margin: 0 6px 6px 0; }
+  .actions { display: flex; gap: .75rem; margin-top: 1rem; }
+  .actions a { text-decoration: none; color: white; padding: .6rem .9rem; border-radius: 10px; display: inline-flex; align-items: center; gap: .5rem; }
+  .btn-primary { background: linear-gradient(135deg, #6366f1, #8b5cf6); }
+  /* Deixa o botão "Ver Portfólio" com a mesma cor do primário */
+  .btn-secondary { background: linear-gradient(135deg, #6366f1, #8b5cf6); border: none; color: #fff; }
+  .btn-secondary i { color: #fff; }
+    
+  /* Lista de projetos (modo list) */
+  .project-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-top: 1rem; }
+  .project-card { background:#fff; border:1px solid rgba(15,23,42,.08); border-radius:12px; overflow:hidden; box-shadow:0 6px 16px rgba(15,23,42,.06); }
+  .project-card img { width:100%; height:150px; object-fit:cover; display:block; }
+  .project-card .info { padding:.75rem; }
+  .project-card .info h4 { margin:0 0 .25rem; font-size:1rem; }
+  .project-card .info p { margin:0; color:#64748b; font-size:.9rem; }
     .gallery-thumbs { display:flex; gap:.5rem; overflow-x:auto; padding: .5rem 0 1rem; }
-    .gallery-thumbs img { width:110px; height:78px; object-fit:cover; border-radius:10px; opacity:.85; cursor:pointer; border:2px solid transparent; }
+    .gallery-thumbs img { width:110px; height:78px; object-fit:cover; border-radius:10px; opacity:.95; cursor:pointer; border:2px solid transparent; }
     .gallery-thumbs img.active { opacity:1; border-color:#6366f1; }
+    @media (max-width: 768px) { .project-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -48,7 +59,7 @@
 
   <main class="project-hero">
     <div class="project-container">
-      <div class="breadcrumb"><a href="index.html#portfolio" style="color:#a5b4fc;text-decoration:none">← Voltar ao Portfólio</a></div>
+  <div class="breadcrumb"><a href="index.html#home" style="color:#a5b4fc;text-decoration:none">← Voltar ao Início</a></div>
       <h1 class="project-title" id="p-title">Título do Projeto</h1>
       <div class="project-meta"><span id="p-category" class="chip">Categoria</span></div>
   <div class="project-cover"><img id="p-image" src="" alt="Imagem do projeto" /></div>
@@ -67,7 +78,7 @@
           </div>
           <div class="actions">
             <a class="btn-primary" href="index.html#contact"><i class="fas fa-paper-plane"></i> Solicitar Orçamento</a>
-            <a class="btn-secondary" href="index.html#portfolio"><i class="fas fa-arrow-left"></i> Ver Portfólio</a>
+            <a class="btn-secondary" href="index.html#home"><i class="fas fa-arrow-left"></i> Voltar para Início</a>
           </div>
         </div>
       </div>
@@ -79,16 +90,18 @@
     const params = new URLSearchParams(window.location.search);
     const title = params.get('title') || 'Projeto';
     const desc = params.get('desc') || 'Descrição do projeto';
-  const imgsParam = params.get('imgs');
-  const gallery = imgsParam ? imgsParam.split('|').slice(0,4) : [];
-  const img = gallery[0] || params.get('img');
+    const imgsParam = params.get('imgs');
+    const gallery = imgsParam ? imgsParam.split('|').slice(0,4) : [];
+    const img = gallery[0] || params.get('img');
     const cat = params.get('cat') || 'geral';
+    const view = params.get('view'); // 'list' para modo listagem
 
     document.getElementById('p-title').textContent = title;
     document.getElementById('p-desc').textContent = desc;
     const cover = document.getElementById('p-image');
     const thumbs = document.getElementById('p-thumbs');
     cover.src = img || 'https://picsum.photos/seed/fallback/1200/800';
+    cover.style.background = '#eef2ff';
     
     if (gallery.length) {
       gallery.forEach((src, i) => {
@@ -96,7 +109,7 @@
         t.src = src;
         if (i === 0) t.classList.add('active');
         t.addEventListener('click', () => {
-          cover.style.opacity = '0';
+          cover.style.opacity = '0.2';
           setTimeout(() => {
             cover.src = src;
             cover.onload = () => cover.style.opacity = '1';
@@ -108,6 +121,48 @@
     }
     document.getElementById('p-category').textContent = cat.toUpperCase();
     document.getElementById('p-cat-chip').textContent = cat;
+
+    // Dataset simples de projetos para modo lista (pode ser expandido)
+    const PROJECTS = [
+      { title:'Modelagem 3D Avançada', cat:'3d', desc:'Projeto de modelagem e renderização 3D', img:'https://picsum.photos/seed/3d-model/1200/800' },
+      { title:'Ilustração Digital', cat:'2d', desc:'Arte digital e design gráfico', img:'https://picsum.photos/seed/2d-illustration/1200/800' },
+      { title:'Website Responsivo', cat:'web', desc:'Design e desenvolvimento web', img:'https://picsum.photos/seed/web-design/1200/800' },
+      { title:'Visualização Arquitetônica', cat:'render', desc:'Renderização fotorrealística', img:'https://picsum.photos/seed/arch-viz/1200/800' },
+      { title:'Identidade Visual', cat:'2d', desc:'Branding e design de marca', img:'https://picsum.photos/seed/branding/1200/800' },
+      { title:'Renderização de Produto', cat:'render', desc:'Render 3D fotorrealista', img:'https://picsum.photos/seed/product-render/1200/800' }
+    ];
+
+    function renderList() {
+      const container = document.querySelector('.project-container');
+      const listWrap = document.createElement('div');
+      const h = document.createElement('h2');
+      h.textContent = 'Projetos';
+      h.style.marginTop = '1rem';
+      listWrap.appendChild(h);
+      const grid = document.createElement('div');
+      grid.className = 'project-list';
+      const filtered = cat && cat !== 'geral' ? PROJECTS.filter(p => p.cat === cat) : PROJECTS;
+      filtered.forEach(p => {
+        const card = document.createElement('a');
+        card.className = 'project-card';
+        // Linka de volta para o modo detalhe deste projeto
+        const query = new URLSearchParams({ title: p.title, desc: p.desc, cat: p.cat, img: p.img }).toString();
+        card.href = `project.html?${query}`;
+        card.innerHTML = `<img src="${p.img}" alt="${p.title}"><div class="info"><h4>${p.title}</h4><p>${p.desc}</p></div>`;
+        grid.appendChild(card);
+      });
+      listWrap.appendChild(grid);
+      container.appendChild(listWrap);
+    }
+
+    if (view === 'list') {
+      // Simplifica o hero para foco na lista
+      document.getElementById('p-title').textContent = 'Projetos';
+      document.querySelector('.project-cover').style.display = 'none';
+      document.getElementById('p-thumbs').style.display = 'none';
+      document.getElementById('p-desc').textContent = 'Explore os projetos por categoria.';
+      renderList();
+    }
   </script>
   <script src="script.js"></script>
 </body>

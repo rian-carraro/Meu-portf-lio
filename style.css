@@ -7,8 +7,8 @@
 
 :root {
     --primary-color: #6366f1;
-    --secondary-color: #8b5cf6;
-    --accent-color: #06b6d4;
+    --secondary-color: #06b6d4;
+    --accent-color: #f59e0b;
     --dark-color: #0f172a;
     --light-color: #f8fafc;
     --gray-color: #64748b;
@@ -31,6 +31,30 @@ body {
     line-height: 1.6;
     color: var(--dark-color);
     overflow-x: hidden;
+    /* Mantém o conteúdo abaixo do header fixo */
+    padding-top: var(--header-height, 80px);
+}
+/* Mídia responsiva e quebras de texto seguras */
+img, video { max-width: 100%; height: auto; }
+p, h1, h2, h3, h4, h5, h6 { overflow-wrap: anywhere; word-break: normal; }
+h1, h2, h3 { text-wrap: balance; }
+
+/* Tipografia fluida base */
+.hero-title { font-size: clamp(2rem, 5vw + 1rem, 3.5rem); }
+.section-title { font-size: clamp(1.75rem, 3.2vw + .5rem, 2.5rem); }
+.hero-description { font-size: clamp(1rem, 1.2vw + .6rem, 1.25rem); }
+.section-description { font-size: clamp(1rem, 1.2vw + .4rem, 1.2rem); }
+.service-title, .certificate-title { font-size: clamp(1.1rem, 1.4vw + .6rem, 1.5rem); }
+.portfolio-info h3 { font-size: clamp(1.1rem, 1.6vw + .4rem, 1.5rem); }
+.portfolio-info p, .footer-text, .contact-details p, .certificate-institution, .certificate-year, .service-description, .stat-label { font-size: clamp(.95rem, 1.1vw + .35rem, 1.05rem); }
+.stat-number { font-size: clamp(1.75rem, 3.6vw + .6rem, 2.5rem); }
+.skills-title { font-size: clamp(1.4rem, 2.4vw + .4rem, 1.8rem); }
+.btn { font-size: clamp(.9rem, 1vw + .45rem, 1rem); }
+
+/* Evita rolagem do fundo quando o menu mobile está aberto */
+body.menu-open {
+    height: 100vh;
+    overflow: hidden;
 }
 
 .container {
@@ -295,7 +319,6 @@ body {
 
 .hero-title {
     font-family: 'Poppins', sans-serif;
-    font-size: 3.5rem;
     font-weight: 700;
     line-height: 1.2;
     margin-bottom: 1.5rem;
@@ -329,7 +352,6 @@ body {
 }
 
 .hero-description {
-    font-size: 1.25rem;
     color: var(--gray-color);
     margin-bottom: 2rem;
     line-height: 1.6;
@@ -411,6 +433,18 @@ body {
     margin-bottom: 1rem;
 }
 
+/* Quando houver foto, a imagem deve preencher o contêiner arredondado */
+.image-placeholder.has-photo {
+    padding: 0;
+}
+
+.image-placeholder.has-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
 .floating-elements {
     position: absolute;
     top: 0;
@@ -463,7 +497,19 @@ body {
 /* Section Styles */
 section {
     padding: 100px 0;
+    /* Quando navegar por âncora, compensa o header */
+    scroll-margin-top: calc(var(--header-height, 80px) + 10px);
 }
+
+/* Compacta o herói e o cola no header */
+section.hero, .hero {
+    padding-top: calc(var(--header-height, 80px) + 10px);
+    padding-bottom: 40px;
+}
+.hero { align-items: flex-start; }
+.hero-content { gap: 2.5rem; }
+.hero-title { margin-bottom: 1rem; }
+.hero-description { margin-bottom: 1.25rem; }
 
 .section-header {
     text-align: center;
@@ -472,7 +518,6 @@ section {
 
 .section-title {
     font-family: 'Poppins', sans-serif;
-    font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 1rem;
     background: var(--gradient-primary);
@@ -482,7 +527,7 @@ section {
 }
 
 .section-description {
-    font-size: 1.2rem;
+    color: var(--gray-color);
     color: var(--gray-color);
     max-width: 600px;
     margin: 0 auto;
@@ -587,15 +632,9 @@ section {
     padding: 2rem;
 }
 
-.portfolio-info h3 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-}
+.portfolio-info h3 { margin-bottom: 0.5rem; }
 
-.portfolio-info p {
-    margin-bottom: 1.5rem;
-    opacity: 0.9;
-}
+.portfolio-info p { margin-bottom: 1.5rem; opacity: 0.9; }
 
 .portfolio-links {
     display: flex;
@@ -639,7 +678,7 @@ section {
 .lightbox-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(15, 23, 42, 0.8);
+    background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(4px);
     animation: fadeIn 0.2s ease;
 }
@@ -648,17 +687,14 @@ section {
     position: relative;
     max-width: min(1000px, 92vw);
     max-height: 88vh;
-    background: #0b1220;
+    background: #ffffff;
     border-radius: 16px;
     box-shadow: var(--shadow-heavy);
     overflow: hidden;
     animation: scaleIn 0.2s ease;
 }
 
-.lightbox-media {
-    width: 100%;
-    background: #0b1220;
-}
+.lightbox-media { width: 100%; background: #ffffff; }
 
 .lightbox-media img {
     display: block;
@@ -668,10 +704,7 @@ section {
     object-fit: cover;
 }
 
-.lightbox-caption {
-    padding: 1rem 1.5rem 1.25rem;
-    color: #e2e8f0;
-}
+.lightbox-caption { padding: 1rem 1.5rem 1.25rem; color: var(--dark-color); }
 
 .lightbox-thumbs {
     display: flex;
@@ -745,6 +778,9 @@ section {
 }
 
 /* Services Section */
+.services {
+    background: var(--light-color);
+}
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -1231,19 +1267,24 @@ section {
     
     .nav-menu {
         position: fixed;
-        left: -100%;
-        top: 70px;
+        inset: 0;
+        top: var(--header-height, 64px);
+        left: 0;
         flex-direction: column;
         background-color: white;
         width: 100%;
+        height: calc(100vh - var(--header-height, 64px));
         text-align: center;
-        transition: 0.3s;
+        transition: transform 0.3s ease;
         box-shadow: var(--shadow-light);
         padding: 2rem 0;
+        transform: translateX(-100%);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
     
     .nav-menu.active {
-        left: 0;
+        transform: translateX(0);
     }
     
     .nav-menu li {
@@ -1300,7 +1341,7 @@ section {
     }
     
     .portfolio-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
     
     .services-grid {
@@ -1308,7 +1349,7 @@ section {
     }
     
     .certificates-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
     
     .certificate-card {
@@ -1319,38 +1360,112 @@ section {
     section {
         padding: 60px 0;
     }
+    /* Hero mais compacto em tablets e celulares */
+    section.hero, .hero { padding-top: calc(var(--header-height, 64px) + 8px); padding-bottom: 28px; }
+    .hero { min-height: auto; }
+    .hero-content { gap: 1.5rem; }
+    .hero-title { margin-bottom: .75rem; }
+    .hero-description { margin-bottom: 1rem; }
+
+    /* Aproxima o título "Meu Portfólio" do hero */
+    section.portfolio { padding-top: 36px; }
+}
+
+/* 2 colunas nos serviços até 576px */
+@media (max-width: 576px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: .75rem;
+    }
+    /* Projetos: 2 por linha no mobile */
+    .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+    /* Certificados: 2 por linha no mobile */
+    .certificates-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
 }
 
 @media (max-width: 480px) {
-    .hero-title {
-        font-size: 2rem;
-    }
+    .hero-title { font-size: 1.8rem; }
     .hero-title .hero-title-line2 { margin-top: .15rem; }
     
-    .section-title {
-        font-size: 2rem;
-    }
+    .section-title { font-size: 1.6rem; }
+    .section-header { margin-bottom: 2rem; }
+    .section-description { font-size: .95rem; }
     
     .nav-container {
         padding: 1rem;
     }
     
     .container {
-        padding: 0 15px;
+        padding: 0 16px;
     }
     
-    .hero-content {
-        padding: 0 1rem;
-    }
+    .hero-content { padding: 0 1rem; }
     
-    .image-container {
-        width: 300px;
-        height: 300px;
-    }
+    .image-container { width: min(240px, 78vw); height: min(240px, 78vw); }
     
-    .btn {
-        padding: 10px 20px;
-        font-size: 0.9rem;
+    .btn { padding: 9px 16px; font-size: 0.9rem; border-radius: 10px; }
+
+    section { padding: 40px 0; }
+    /* Hero ultra-compacto no mobile pequeno */
+    section.hero, .hero { padding-top: calc(var(--header-height, 56px) + 6px); padding-bottom: 22px; }
+    .hero { min-height: auto; }
+    .hero-content { gap: 1rem; }
+    .hero-title { margin-bottom: .5rem; }
+    .hero-description { margin-bottom: .75rem; }
+
+    /* Portfólio ainda mais próximo do hero no mobile pequeno */
+    section.portfolio { padding-top: 16px; }
+
+    /* Filtros como chips roláveis em uma linha */
+    .portfolio-filters {
+        flex-direction: row;    /* sobrescreve coluna do breakpoint 768px */
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        gap: .5rem;
+        overflow-x: auto;
+        padding-bottom: .5rem;
+        -webkit-overflow-scrolling: touch;
+        /* ocultar a barra e ativar snap suave no mobile */
+        scrollbar-width: none;            /* Firefox */
+        -ms-overflow-style: none;         /* IE/Edge antigo */
+        scroll-snap-type: x proximity;
+    }
+    /* Oculta a barra no Chrome/Safari */
+    .portfolio-filters::-webkit-scrollbar { width: 0; height: 0; display: none; }
+    .filter-btn {
+        padding: 8px 14px;
+        border-radius: 999px;
+        font-size: .85rem;
+        border-width: 1.5px;
+        flex: 0 0 auto;         /* não quebrar de linha */
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap;
+        scroll-snap-align: start;
+    }
+    .portfolio-grid { gap: 1rem; }
+    .portfolio-item { border-radius: 10px; }
+    .portfolio-image { height: 180px; }
+    .portfolio-info { padding: 1.25rem; }
+
+    /* Cards mais compactos */
+    .service-card { padding: 1.25rem; }
+    .contact-form { padding: 1.5rem; }
+    .certificate-card { padding: 1.5rem; }
+    .skills-section { margin-top: 2rem; }
+    .about-image .image-placeholder { height: 380px; }
+
+    /* Serviços: 2 por linha no mobile */
+    .services-grid { 
+        grid-template-columns: repeat(2, 1fr);
+        gap: .75rem; 
     }
 }
 
@@ -1388,9 +1503,23 @@ section {
     transform: translateX(0);
 }
 
-/* Smooth scrolling for all browsers */
-html {
-    scroll-behavior: smooth;
+/* Extras Mobile */
+@media (max-width: 360px) {
+    .hero-title { font-size: 1.6rem; }
+    .section-title { font-size: 1.5rem; }
+    .btn { padding: 8px 14px; }
+}
+
+/* Safe area para iOS notch */
+@supports (padding: max(0px)) {
+    .navbar { padding-top: max(1rem, env(safe-area-inset-top)); }
+    .nav-menu { padding-bottom: max(2rem, env(safe-area-inset-bottom)); }
+}
+
+/* Lightbox no mobile */
+@media (max-width: 768px) {
+    .lightbox-content { width: 92vw; }
+    .lightbox-media img { max-height: 60vh; }
 }
 
 /* Custom scrollbar */

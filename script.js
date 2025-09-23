@@ -26,6 +26,8 @@ const navbar = document.getElementById('navbar');
 hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('active');
     navMenu.classList.toggle('active');
+    // Lock body scroll when mobile menu is open
+    document.body.classList.toggle('menu-open', navMenu.classList.contains('active'));
 });
 
 // Close mobile menu when clicking on a link
@@ -33,6 +35,7 @@ document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', () => {
         hamburger.classList.remove('active');
         navMenu.classList.remove('active');
+        document.body.classList.remove('menu-open');
     });
 });
 
@@ -44,6 +47,22 @@ window.addEventListener('scroll', () => {
         navbar.classList.remove('scrolled');
     }
 });
+
+// Calcular altura do header e expor como CSS var para evitar sobreposição do título
+function updateHeaderHeightVar() {
+    const header = document.querySelector('.navbar');
+    if (!header) return;
+    const h = header.offsetHeight;
+    document.documentElement.style.setProperty('--header-height', h + 'px');
+}
+updateHeaderHeightVar();
+window.addEventListener('resize', () => {
+    // Debounce simples
+    clearTimeout(window.__hdrTimer);
+    window.__hdrTimer = setTimeout(updateHeaderHeightVar, 100);
+});
+// Recalcular após fontes carregarem e AOS ajustar layout
+window.addEventListener('load', () => setTimeout(updateHeaderHeightVar, 300));
 
 // Active navigation link highlighting
 const sections = document.querySelectorAll('section[id]');
@@ -204,7 +223,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-            const headerOffset = 80;
+            const headerOffset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || (document.querySelector('.navbar')?.offsetHeight) || 80;
             const elementPosition = target.offsetTop;
             const offsetPosition = elementPosition - headerOffset;
             
@@ -447,11 +466,34 @@ const imageObserver = new IntersectionObserver((entries) => {
     });
 });
 
-// Observe all images
-document.querySelectorAll('img').forEach(img => {
+// Observe only images marked to lazy-fade
+document.querySelectorAll('img[data-lazy]').forEach(img => {
     img.style.opacity = '0';
     imageObserver.observe(img);
 });
+
+// Mobile: clicar no bloco de serviços abre a página de projetos em modo lista
+(function enableMobileServiceRedirect(){
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    if (!isMobile) return; // somente mobile
+    const cards = document.querySelectorAll('.services-grid .service-card');
+    if (!cards.length) return;
+    cards.forEach(card => {
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', () => {
+            const titleEl = card.querySelector('.service-title');
+            const t = (titleEl?.textContent || '').toLowerCase();
+            let cat = 'geral';
+            if (t.includes('3d')) cat = '3d';
+            else if (t.includes('2d')) cat = '2d';
+            else if (t.includes('final')) cat = 'final';
+            else if (t.includes('render')) cat = 'render';
+            else if (t.includes('web')) cat = 'web';
+            const url = `project.html?view=list&cat=${encodeURIComponent(cat)}`;
+            window.location.href = url;
+        });
+    });
+})();
 
 // Lightbox functionality
 const lightbox = document.getElementById('lightbox');
@@ -584,6 +626,29 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowLeft') prevBtn.click();
     if (e.key === 'ArrowRight') nextBtn.click();
 });
+
+// Basic swipe gestures for lightbox on touch devices
+(function addLightboxSwipe() {
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const threshold = 50; // min px to consider a swipe
+    const surface = document.querySelector('.lightbox-content') || lightbox;
+    if (!surface) return;
+    surface.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    surface.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const deltaX = touchEndX - touchStartX;
+        if (Math.abs(deltaX) > threshold) {
+            if (deltaX < 0) {
+                nextBtn.click();
+            } else {
+                prevBtn.click();
+            }
+        }
+    }, { passive: true });
+})();
 
 // Mouse cursor trail effect (optional)
 let isMouseTrailEnabled = false; // Set to true to enable
