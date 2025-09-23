@@ -253,8 +253,24 @@ backToTopButton.addEventListener('click', () => {
     });
 });
 
+// =============================================
+// 🔧 CONFIGURAÇÃO EMAILJS - ALTERE AQUI:
+// =============================================
+const EMAIL_CONFIG = {
+    publicKey: "CiURYUy5nh-KIxWVg",  // ✅ Sua Public Key
+    serviceId: "service_befz2yk", // ❌ PRECISA ALTERAR - Ex: service_gmail_abc123
+    templateId: "template_c5aihi3" // ❌ PRECISA ALTERAR - Ex: template_contact_xyz789
+};
+
 // Contact form handling
 const contactForm = document.querySelector('.contact-form');
+
+// Inicializar EmailJS
+(function() {
+    emailjs.init({
+        publicKey: EMAIL_CONFIG.publicKey,
+    });
+})();
 
 contactForm.addEventListener('submit', function(e) {
     e.preventDefault();
@@ -277,20 +293,37 @@ contactForm.addEventListener('submit', function(e) {
         return;
     }
     
-    // Simulate form submission
+    // Preparar dados para envio
+    const templateParams = {
+        from_name: name,
+        from_email: email,
+        subject: subject,
+        message: message,
+        to_name: 'Rian Carraro', // Seu nome
+        reply_to: email
+    };
+    
+    // Enviar email
     const submitButton = this.querySelector('button[type="submit"]');
     const originalText = submitButton.innerHTML;
     
     submitButton.innerHTML = '<span>Enviando...</span><i class="fas fa-spinner fa-spin"></i>';
     submitButton.disabled = true;
     
-    setTimeout(() => {
-        showNotification('Mensagem enviada com sucesso! Entrarei em contato em breve.', 'success');
-        this.reset();
-        
-        submitButton.innerHTML = originalText;
-        submitButton.disabled = false;
-    }, 2000);
+    emailjs.send(EMAIL_CONFIG.serviceId, EMAIL_CONFIG.templateId, templateParams)
+        .then(function(response) {
+            console.log('Email enviado com sucesso!', response.status, response.text);
+            showNotification('Mensagem enviada com sucesso! Entrarei em contato em breve.', 'success');
+            contactForm.reset();
+        })
+        .catch(function(error) {
+            console.error('Erro ao enviar email:', error);
+            showNotification('Erro ao enviar mensagem. Tente novamente mais tarde.', 'error');
+        })
+        .finally(function() {
+            submitButton.innerHTML = originalText;
+            submitButton.disabled = false;
+        });
 });
 
 // Email validation function
@@ -303,7 +336,10 @@ function isValidEmail(email) {
 function showNotification(message, type) {
     // Remove existing notifications
     const existingNotifications = document.querySelectorAll('.notification');
-    existingNotifications.forEach(notification => notification.remove());
+    existingNotifications.forEach(notification => {
+        notification.classList.add('removing');
+        setTimeout(() => notification.remove(), 300);
+    });
     
     // Create notification element
     const notification = document.createElement('div');
@@ -316,63 +352,30 @@ function showNotification(message, type) {
         </div>
     `;
     
-    // Add styles
-    notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: ${type === 'success' ? '#10b981' : '#ef4444'};
-        color: white;
-        padding: 1rem 1.5rem;
-        border-radius: 8px;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        z-index: 10000;
-        opacity: 0;
-        transform: translateX(100%);
-        transition: all 0.3s ease;
-        max-width: 400px;
-    `;
-    
-    notification.querySelector('.notification-content').style.cssText = `
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    `;
-    
-    notification.querySelector('.notification-close').style.cssText = `
-        background: none;
-        border: none;
-        color: white;
-        font-size: 1.2rem;
-        cursor: pointer;
-        padding: 0;
-        margin-left: auto;
-    `;
-    
     // Add to DOM
     document.body.appendChild(notification);
     
-    // Animate in
-    setTimeout(() => {
-        notification.style.opacity = '1';
-        notification.style.transform = 'translateX(0)';
-    }, 100);
-    
     // Close button functionality
     notification.querySelector('.notification-close').addEventListener('click', () => {
-        notification.style.opacity = '0';
-        notification.style.transform = 'translateX(100%)';
-        setTimeout(() => notification.remove(), 300);
+        closeNotification(notification);
     });
     
-    // Auto remove after 5 seconds
+    // Auto close after 5 seconds
     setTimeout(() => {
         if (notification.parentNode) {
-            notification.style.opacity = '0';
-            notification.style.transform = 'translateX(100%)';
-            setTimeout(() => notification.remove(), 300);
+            closeNotification(notification);
         }
     }, 5000);
+}
+
+// Helper function to close notification
+function closeNotification(notification) {
+    notification.classList.add('removing');
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.remove();
+        }
+    }, 300);
 }
 
 // Parallax effect for floating shapes
