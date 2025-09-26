@@ -125,6 +125,115 @@ if (typingText) {
     setTimeout(typeEffect, 1500);
 }
 
+// Portfolio background images
+function initPortfolioBackgrounds() {
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+    
+    portfolioItems.forEach(item => {
+        const placeholder = item.querySelector('.image-placeholder');
+        const backgroundImage = item.getAttribute('data-background') || item.getAttribute('data-image');
+        
+        if (backgroundImage && placeholder) {
+            placeholder.style.backgroundImage = `url('${backgroundImage}')`;
+        }
+    });
+}
+
+// Detectar se é dispositivo móvel ou touch
+function isMobile() {
+    return window.innerWidth <= 768 || 
+           ('ontouchstart' in window) || 
+           /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
+// Detectar se é especificamente um dispositivo touch
+function isTouchDevice() {
+    return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+}
+
+// Configurar comportamento mobile para portfólio
+function initMobilePortfolio() {
+    if (isMobile()) {
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        
+        portfolioItems.forEach((item, index) => {
+            // Verificar se já foi configurado para evitar duplicação
+            if (item.dataset.mobileConfigured) return;
+            
+            // Marcar como configurado
+            item.dataset.mobileConfigured = 'true';
+            
+            // Encontrar o link do site (botão externo)
+            const externalButton = item.querySelector('.fa-external-link-alt');
+            let siteUrl = '';
+            
+            if (externalButton && externalButton.closest('a')) {
+                siteUrl = externalButton.closest('a').href;
+            }
+            
+            // Adicionar classe CSS para mobile
+            item.classList.add('mobile-clickable');
+            
+            // Remover eventos existentes
+            const newItem = item.cloneNode(true);
+            item.parentNode.replaceChild(newItem, item);
+            
+            // Adicionar evento de clique no item inteiro
+            newItem.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Adicionar feedback visual imediato
+                newItem.style.transform = 'scale(0.95)';
+                
+                setTimeout(() => {
+                    newItem.style.transform = 'scale(1)';
+                    
+                    if (siteUrl) {
+                        // Abrir o site em nova aba
+                        window.open(siteUrl, '_blank');
+                    } else {
+                        // Fallback: redirecionar para project.html com parâmetros
+                        const title = newItem.getAttribute('data-title') || 'Projeto';
+                        const description = newItem.getAttribute('data-description') || 'Descrição do projeto';
+                        const category = newItem.getAttribute('data-category') || 'web';
+                        const images = newItem.getAttribute('data-images') || '';
+                        
+                        const params = new URLSearchParams({
+                            title: title,
+                            desc: description,
+                            cat: category,
+                            imgs: images
+                        });
+                        
+                        window.open(`project.html?${params.toString()}`, '_blank');
+                    }
+                }, 150);
+            });
+            
+            // Feedback visual para touch
+            if (isTouchDevice()) {
+                newItem.addEventListener('touchstart', (e) => {
+                    e.currentTarget.style.transform = 'scale(0.98)';
+                }, { passive: true });
+                
+                newItem.addEventListener('touchend', (e) => {
+                    setTimeout(() => {
+                        e.currentTarget.style.transform = 'scale(1)';
+                    }, 100);
+                }, { passive: true });
+            }
+        });
+    } else {
+        // Remover configuração mobile se não for mobile
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        portfolioItems.forEach(item => {
+            item.classList.remove('mobile-clickable');
+            item.removeAttribute('data-mobile-configured');
+        });
+    }
+}
+
 // Portfolio filtering
 const filterButtons = document.querySelectorAll('.filter-btn');
 const portfolioItems = document.querySelectorAll('.portfolio-item');
@@ -706,6 +815,21 @@ if (isMouseTrailEnabled) {
     
     animateTrail();
 }
+
+// Initialize portfolio backgrounds when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    initPortfolioBackgrounds();
+    initMobilePortfolio();
+});
+
+// Reinicializar comportamento mobile ao redimensionar tela
+window.addEventListener('resize', () => {
+    // Debounce para evitar múltiplas execuções
+    clearTimeout(window.resizeTimeout);
+    window.resizeTimeout = setTimeout(() => {
+        initMobilePortfolio();
+    }, 250);
+});
 
 // Console welcome message
 console.log(`
